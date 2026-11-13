@@ -1,0 +1,63 @@
+﻿<div class="contenedor">
+  <header class="encabezado">
+    <h1>ImpactoTI</h1>
+    <p>Sistema de registro de incidencias de soporte técnico</p>
+  </header>
+
+  <main class="tarjeta">
+    <h2>Registrar incidencia</h2>
+    <p class="descripcion">Complete los datos para reportar un problema técnico.</p>
+
+    @if (mensajeExito) {
+      <div class="exito" role="status">
+        Datos validados correctamente.
+      </div>
+    }
+
+    <form [formGroup]="incidenciaForm" (ngSubmit)="registrar()">
+      <label for="responsable">Nombre del responsable</label>
+      <input id="responsable" type="text" formControlName="responsable"
+             placeholder="Ingrese su nombre">
+      @if (incidenciaForm.controls.responsable.touched && incidenciaForm.controls.responsable.invalid) {
+        <small>Ingrese un nombre de al menos 3 caracteres.</small>
+      }
+
+      <label for="correo">Correo electrónico</label>
+      <input id="correo" type="email" formControlName="correo"
+             placeholder="ejemplo@correo.com">
+      @if (incidenciaForm.controls.correo.touched && incidenciaForm.controls.correo.invalid) {
+        <small>Ingrese un correo electrónico válido.</small>
+      }
+
+      <label for="tienda">Tienda</label>
+      <input id="tienda" type="text" formControlName="tienda"
+             placeholder="Nombre de la tienda">
+      @if (incidenciaForm.controls.tienda.touched && incidenciaForm.controls.tienda.invalid) {
+        <small>La tienda es obligatoria.</small>
+      }
+
+      <label for="equipo">Tipo de equipo</label>
+      <select id="equipo" formControlName="equipo">
+        <option value="">Seleccione un equipo</option>
+        <option value="POS">Terminal POS</option>
+        <option value="Caja">Caja registradora</option>
+        <option value="Impresora">Impresora</option>
+        <option value="Balanza">Balanza electrónica</option>
+        <option value="Red">Red o WiFi</option>
+        <option value="Otro">Otro</option>
+      </select>
+      @if (incidenciaForm.controls.equipo.touched && incidenciaForm.controls.equipo.invalid) {
+        <small>Seleccione un tipo de equipo.</small>
+      }
+
+      <label for="descripcion">Descripción de la incidencia</label>
+      <textarea id="descripcion" formControlName="descripcion"
+                placeholder="Describa el problema técnico..." rows="4"></textarea>
+      @if (incidenciaForm.controls.descripcion.touched && incidenciaForm.controls.descripcion.invalid) {
+        <small>La descripción debe tener al menos 10 caracteres.</small>
+      }
+
+      <button type="submit">Validar y registrar</button>
+    </form>
+  </main>
+</div>

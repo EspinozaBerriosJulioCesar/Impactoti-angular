@@ -1,0 +1,89 @@
+﻿:host {
+  display: block;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #172b4d;
+}
+
+.contenedor {
+  min-height: 100vh;
+  padding: 35px 20px;
+  background: #f1f5f9;
+}
+
+.encabezado {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #12345a;
+}
+
+.encabezado h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.tarjeta {
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px #00000012;
+}
+
+.tarjeta h2 { color: #12345a; }
+.descripcion { color: #64748b; }
+
+label {
+  display: block;
+  margin-top: 17px;
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #60a5fa;
+  border-color: #2563eb;
+}
+
+small {
+  display: block;
+  margin-top: 5px;
+  color: #dc2626;
+}
+
+button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  border: none;
+  border-radius: 7px;
+  background: #123f70;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover { background: #1d5a96; }
+
+.exito {
+  padding: 12px;
+  margin: 15px 0;
+  background: #dcfce7;
+  color: #166534;
+  border-radius: 7px;
+}
+
+@media (max-width: 600px) {
+  .tarjeta { padding: 20px; }
+}
