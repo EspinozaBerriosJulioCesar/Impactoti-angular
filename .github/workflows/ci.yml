@@ -1,0 +1,41 @@
+﻿name: CI - ImpactoTI Angular
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    name: Pruebas y compilacion Angular
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar codigo del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar pruebas unitarias
+        run: npm test -- --watch=false
+
+      - name: Compilar aplicacion Angular
+        run: npm run build
+
+      - name: Guardar artefacto de compilacion
+        uses: actions/upload-artifact@v4
+        with:
+          name: impactoti-angular-build
+          path: dist/impactoti-angular/
+          if-no-files-found: error
+          retention-days: 7
