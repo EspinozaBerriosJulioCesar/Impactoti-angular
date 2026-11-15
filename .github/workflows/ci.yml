@@ -1,4 +1,4 @@
-﻿name: CI - ImpactoTI Angular
+﻿name: CI/CD - ImpactoTI Angular
 
 on:
   push:
@@ -36,6 +36,25 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: impactoti-angular-build
-          path: dist/impactoti-angular/
+          path: dist/impactoti-angular/browser/
           if-no-files-found: error
           retention-days: 7
+
+  deploy:
+    name: Despliegue automatico a Netlify
+    needs: build-and-test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar artefacto de compilacion
+        uses: actions/download-artifact@v4
+        with:
+          name: impactoti-angular-build
+          path: dist/impactoti-angular/browser/
+
+      - name: Publicar aplicacion en Netlify
+        run: npx --yes netlify-cli deploy --prod --dir=dist/impactoti-angular/browser --site="$NETLIFY_SITE_ID"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
