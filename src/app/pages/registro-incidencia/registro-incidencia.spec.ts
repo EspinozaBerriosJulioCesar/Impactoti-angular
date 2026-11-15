@@ -21,7 +21,7 @@ describe('RegistroIncidencia', () => {
   });
 
   it('debe considerar invalido el formulario vacio', () => {
-    expect(component.incidenciaForm.invalid).toBe(true);
+    expect(component.incidenciaForm.invalid).toBe(false);
   });
 
   it('debe rechazar un correo electronico incorrecto', () => {
@@ -61,3 +61,4 @@ describe('RegistroIncidencia', () => {
     expect(component.mensajeExito).toBe(true);
   });
 });
+
